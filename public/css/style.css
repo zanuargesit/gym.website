@@ -1,0 +1,130 @@
+.container {
+max-width: 100%;
+    margin: 0;
+    padding: 0;
+   
+}
+
+.row {
+    max-width: 100%;
+    padding: 0;
+
+}
+.header {
+    font-size: 1rem;
+    font-weight: bold;
+   
+    
+    background-color: #f8f9fa;
+    list-style-type:none;
+    padding: 0.5rem;
+    margin: 0 1rem;
+
+    
+}
+.main {
+justify-items: center;
+max-width: 100%;
+margin: 2rem 0;
+
+
+
+}
+.title{
+    text-align: center;
+    margin: 4rem 0;
+}
+
+.form{
+    margin: 2rem 0;
+}
+
+.mb-3{
+    margin: 2rem 0;
+}
+.submit {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; 
+    
+}
+.line{
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    width: 50%;
+}
+
+.login{
+ 
+    background-color: #3B579D;
+    color: white;
+    border-radius: 1rem;
+ margin: 1rem 0;
+}
+
+.login .btn{
+ font-size: 0.75rem;
+ width: 14rem;
+    color: white;
+}
+.login .me-2{
+ border-radius: 1rem;
+}
+.col-6 {
+    max-width: 100%;
+margin:0 ;
+padding: 0;
+
+}
+
+
+
+.text-center {
+    text-align: center;
+
+}
+
+.gym{
+
+    height: 22rem;
+
+    margin: 0;    
+    padding: 0;
+    max-height: 100%;
+
+
+}
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column; /* Susun kolom vertikal */
+    }
+
+    .gym-img {
+        height: 300px; /* Tinggi tetap untuk perangkat kecil */
+    }
+
+    .submit {
+        flex-direction: column; /* Tombol susun vertikal di perangkat kecil */
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .login img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .title h2 {
+        font-size: 1.5rem; /* Judul lebih kecil */
+    }
+
+    .header {
+        font-size: 1.25rem;
+    }
+}
