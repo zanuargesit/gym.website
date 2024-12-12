@@ -31,6 +31,17 @@
 
 .form {
     margin: 2rem 0;
+
+}
+.row-1{
+    
+    display: flex;
+       
+   gap: 4rem;
+}
+form {
+
+    padding: 4rem 14rem;
 }
 
 .mb-3 {
