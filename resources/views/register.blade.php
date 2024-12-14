@@ -70,15 +70,15 @@
                             <hr>
                         </div>
                         <div class="log">
-                            <div class="d-flex align-items-center login">
+                            <div class="d-flex align-items-left login">
                                 <img src="{{ asset('img/facebook.png') }}" alt="Facebook" width="40" height="40" class="me-2">
                                 <button class="btn">LOGIN WITH FACEBOOK</button>
                             </div>
-                            <div class="d-flex align-items-center mt-2 login">
+                            <div class="d-flex align-items-left mt-2 login">
                                 <img src="{{ asset('img/twitter.png') }}" alt="Twitter" width="40" height="40" class="me-2">
                                 <button class="btn">LOGIN WITH TWITTER</button>
                             </div>
-                            <div class="d-flex align-items-center mt-2 login">
+                            <div class="d-flex align-items-left mt-2 login">
                                 <img src="{{ asset('img/google.png') }}" alt="Google" width="40" height="40" class="me-2">
                                 <button class="btn">LOGIN WITH GOOGLE</button>
                             </div>

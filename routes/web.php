@@ -8,5 +8,11 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('register');
 });
+Route::get('/dasboard', function () {
+    return view('dasboard');
+});
+Route::get('/classes', function () {
+    return view('classes');
+});
 
 

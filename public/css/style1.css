@@ -92,36 +92,40 @@ hr {
 }
 
 .gym {
-
-    height: 21.5rem;
-   object-fit: fill;
-   margin: 0;
-   padding: 0;
-    }
-
-@media (max-width: 768px) {
-    .row {
-        flex-direction: column; /
-    }
-
-    .submit {
-        flex-direction: column; /* Stack buttons vertically on small devices */
-        gap: 15px;
-        justify-content: center;
-    }
-
-    .login img {
-        width: 30px;
-        height: 30px;
-    }
+    height: 100%;
 }
 
-@media (max-width: 576px) {
-    .title h2 {
-        font-size: 1.5rem; /* Smaller title on small devices */
+.gym img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+
+        .gym {
+            margin-top: 2rem;
+            height: auto;
+        }
+
+        .submit {
+            justify-content: center;
+        }
     }
 
-    .header {
-        font-size: 1.25rem;
+    @media (max-width: 576px) {
+        .header {
+            font-size: 1.25rem;
+        }
+
+        .title h2 {
+            font-size: 1.5rem;
+        }
+
+        .login .btn {
+            font-size: 0.875rem;
+        }
     }
-}

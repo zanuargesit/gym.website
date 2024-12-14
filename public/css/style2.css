@@ -1,0 +1,186 @@
+.container{
+    background-color: grey;
+    max-width: 100%;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    list-style-type: none;
+    margin: 0 0.5rem;
+}
+.header #menu{
+    display: flex;
+
+    justify-content: end;
+    margin-left: 28rem;
+    gap: 1rem;
+}
+.header li{
+    margin-right: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+.header li:hover{
+    color: red;
+    transition: color 0.5s ease;
+}
+.header img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 2rem;
+}
+.header .profile{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: rgb(240, 157, 202);
+    font-weight: bold;
+}
+.welcome {
+  
+    color: #f8f9fa;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background-image: url("../img/gym1.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+height: 80.5rem;
+width: 113.45rem;
+margin: 1rem auto;
+    border-radius: 2rem;
+ 
+}
+.welcome .info{
+    
+
+    font-weight: bold;
+    color: #f8f9fa;
+  
+  position: relative;
+  top: 70rem;
+  left: 2rem;
+
+}
+.welcome .info h1{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f8f9fa;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.service{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    list-style-type: none;
+    margin: 0 4rem;
+}
+.service .col-3{
+    display: flex;
+
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+
+
+}
+.sub-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    list-style-type: none;
+    margin: 0 4rem;
+}
+.service .col-3 .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);    
+}
+
+.service .row{
+    display: flex;
+    padding: 0 auto;
+    background-color: #f8f9fa;
+    list-style-type: none;
+    margin: 0 4rem;
+}
+
+
+.classes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    list-style-type: none;
+    margin: 0 4rem;
+}
+.classes .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    list-style-type: none;
+    margin: 0 4rem;
+}
+.classes .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+}
+.store{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    list-style-type: none;
+    margin: 0 4rem;
+}
+.store .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    list-style-type: none;
+    margin: 0 4rem;
+}
+.store .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+}
+.card-body{
+height: 16rem;
+width: 16rem;
+}
+
+
+
+
