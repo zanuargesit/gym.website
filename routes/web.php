@@ -36,5 +36,17 @@ Route::get('/createitem', function () {
 Route::get('/edititem', function () {
     return view('item1');
 });
+Route::get('/adminaccount', function () {
+    return view('dasboardadmin1');
+});
+Route::get('/adminclasses', function () {
+    return view('dasboardadmin2');
+});
+Route::get('/adminitem', function () {
+    return view('dasboardadmin3');
+});
+Route::get('/dasboarduser', function () {
+    return view('dasboardmember');
+});
 
 
