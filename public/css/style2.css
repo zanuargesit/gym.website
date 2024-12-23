@@ -1,8 +1,8 @@
-.container{
+.container {
     background-color: grey;
     max-width: 100%;
 }
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,29 +10,33 @@
     background-color: #f8f9fa;
     list-style-type: none;
     margin: 0 0.5rem;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
 }
-.header #menu{
+.header #menu {
     display: flex;
 
     justify-content: end;
     margin-left: 28rem;
     gap: 1rem;
 }
-.header li{
+.header li {
     margin-right: 1rem;
     cursor: pointer;
     font-weight: bold;
 }
-.header li:hover{
+.header li:hover {
     color: red;
     transition: color 0.5s ease;
 }
-.header img{
+.header img {
     width: 3rem;
     height: 3rem;
     border-radius: 2rem;
 }
-.header .profile{
+.header .profile {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -41,37 +45,29 @@
     font-weight: bold;
 }
 .welcome {
-  
+    display: flex;
     color: #f8f9fa;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     background-image: url("../img/gym1.jpg");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-height: 80.5rem;
-width: 113.45rem;
-margin: 1rem auto;
+    background-position: center;
+    height: 100vh;
+    margin: 1rem auto;
     border-radius: 2rem;
- 
-}
-.welcome .info{
-    
-
     font-weight: bold;
     color: #f8f9fa;
-  
-  position: relative;
-  top: 70rem;
-  left: 2rem;
-
+    align-items: center;
 }
-.welcome .info h1{
+
+.welcome h1 {
     font-size: 2rem;
     font-weight: bold;
     color: #f8f9fa;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.service{
+.service {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,16 +76,14 @@ margin: 1rem auto;
     list-style-type: none;
     margin: 0 4rem;
 }
-.service .col-3{
+.service .col-3 {
     display: flex;
 
     align-items: center;
     padding: 0.5rem;
     background-color: #f8f9fa;
-
-
 }
-.sub-title{
+.sub-title {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,7 +92,7 @@ margin: 1rem auto;
     list-style-type: none;
     margin: 0 4rem;
 }
-.service .col-3 .card{
+.service .col-3 .card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,10 +100,10 @@ margin: 1rem auto;
     background-color: #f8f9fa;
     border: none;
     border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.service .row{
+.service .row {
     display: flex;
     padding: 0 auto;
     background-color: #f8f9fa;
@@ -117,8 +111,7 @@ margin: 1rem auto;
     margin: 0 4rem;
 }
 
-
-.classes{
+.classes {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,7 +120,7 @@ margin: 1rem auto;
     list-style-type: none;
     margin: 0 4rem;
 }
-.classes .row{
+.classes .row {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,7 +129,7 @@ margin: 1rem auto;
     list-style-type: none;
     margin: 0 4rem;
 }
-.classes .card{
+.classes .card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,9 +138,8 @@ margin: 1rem auto;
     border: none;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
 }
-.store{
+.store {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,7 +148,7 @@ margin: 1rem auto;
     list-style-type: none;
     margin: 0 4rem;
 }
-.store .row{
+.store .row {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -165,7 +157,7 @@ margin: 1rem auto;
     list-style-type: none;
     margin: 0 4rem;
 }
-.store .card{
+.store .card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -174,13 +166,8 @@ margin: 1rem auto;
     border: none;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
 }
-.card-body{
-height: 16rem;
-width: 16rem;
+.card-body {
+    height: 16rem;
+    width: 16rem;
 }
-
-
-
-

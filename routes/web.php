@@ -1,23 +1,46 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+//Route Dashboard
 Route::get('/', function () {
-    return view('login');
+    return view('dashboard');
 });
-Route::get('/register', function () {
-    return view('register');
-});
-Route::get('/dasboard', function () {
-    return view('dasboard');
-});
-Route::get('/classes', function () {
-    return view('classes');
-});
+
+//Route Auth
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//route role middleware
+Route::middleware(['auth'])->group(
+    function () {
+        Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+
+        Route::get('/classes', [ClassesController::class, 'index'])->name('classes');
+
+        Route::get('/product', [ProductController::class, 'index'])->name('product');
+
+        Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+
+        Route::get('/member', [MemberController::class, 'index'])->name('member');
+    }
+);
+
+
+
 Route::get('/store', function () {
     return view('store');
-    return view('welcome');
 });
 
 Route::get('/createaccount', function () {
@@ -50,10 +73,3 @@ Route::get('/adminitem', function () {
 Route::get('/dasboarduser', function () {
     return view('dasboardmember');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
-
-require __DIR__.'/auth.php';

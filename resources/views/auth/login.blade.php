@@ -21,20 +21,34 @@
                     <div class="title">
                         <h2>LOGIN</h2>
                     </div>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <div class="form">
-                        <form action="/login" method="POST">
+                        <form action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                <label for="validationCustom01" class="form-label">Email</label>
+                                <input type="text" name="email" class="form-control" required>
+                                @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                <label class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control" required>
+                                @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="submit">
-                                <button type="submit" class="btn btn-primary">Daftar</button>
+                                <button type="submit" class="btn btn-primary"><a class="text-white" style="text-decoration: none" href="{{ route('register') }}">Daftar</a></button>
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                         </form>
@@ -42,7 +56,7 @@
                     <div class="have_account">
                         <div class="line">
                             <hr>
-                            <span> or</span>  
+                            <span> or</span>
                             <hr>
                         </div>
                         <div class="log">

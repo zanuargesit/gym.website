@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style1.css') }}">
 </head>
@@ -21,44 +21,64 @@
                     <div class="title">
                         <h2>REGISTER</h2>
                     </div>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <div class="form">
-                        <form action="/login" method="POST">
+                        <form action="{{ route('register') }}" method="POST">
                             @csrf
                             <div class="row-1">
-
                                 <div class="col-6">
-                                    
                                     <div class="mb-3">
-                                        <label for="exampleInputUsername1" class="form-label">Username</label>
-                                        <input type="Username" name="Username" class="form-control" id="exampleInputPassword1">
+                                        <label for="name" class="form-label">Nama</label>
+                                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+                                        @error('name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control" required>
+                                        @error('password')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                        <label for="no_telepon" class="form-label">Nomor Telepon</label>
+                                        <input type="text" name="no_telepon" class="form-control" value="{{ old('no_telepon') }}" required>
+                                        @error('no_telepon')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-6">
-    
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                        <input type="text" name="email" class="form-control" value="{{ old('email') }}" required>
+                                        @error('email')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                        <label for="cofirmed_password" class="form-label">Confirmed Password</label>
+                                        <input type="password" id="confirmed_password" name="confirmed_password" class="form-control" required>
+                                        <div id="password-error" class="text-danger" style="display: none;">Passwords do not match!</div>
+                                        @error('confirmed_password')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-
                                 <div class="submit">
+                                    <button type="submit" class="btn btn-primary"><a href="{{ route('login') }}" class="text-white" style="text-decoration: none">Login</a></button>
                                     <button type="submit" class="btn btn-primary">Daftar</button>
-                                    <button type="submit" class="btn btn-primary">Login</button>
                                 </div>
                             </div>
                         </form>
@@ -66,7 +86,7 @@
                     <div class="have_account">
                         <div class="line">
                             <hr>
-                            <span> or</span>  
+                            <span> or</span>
                             <hr>
                         </div>
                         <div class="log">

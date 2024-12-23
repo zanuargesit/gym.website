@@ -16,6 +16,7 @@
             <div class="col-6 left">
                 <div class="sub-title">
                     <h4>Manage</h4>
+
                 </div>
                 <div class="menu">
                     <li><button class="btn btn-secondary ">Users</button></li>
