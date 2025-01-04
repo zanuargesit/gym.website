@@ -1,0 +1,54 @@
+.container{
+    margin: 0;
+}
+.container .row .left{
+    background-color: rgba(0, 0, 0, 0.226);
+    width: 18rem;
+}
+.container .row .left .sub-title{
+    display: flex;
+    justify-content: start;
+    margin: 1rem 1rem;
+
+}
+.menu{
+    -ms-wrap-flow: horizontal;
+    gap: 0.5rem;
+    height: 56rem;
+
+}
+.menu li{
+    height: 2rem;
+    list-style: none;
+    margin: 1rem 1rem;
+
+}
+li button{
+    width: 15rem;
+    height: 2.25rem;
+}
+
+.create{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.create button{
+    width: 14rem;
+    height: 2.5rem;
+margin: 1rem 1rem;
+}
+
+.container .row .right{
+    width: 60rem;
+}
+
+.right .header .head{
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    list-style-type: none;
+
+}
