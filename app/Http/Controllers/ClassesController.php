@@ -1,33 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Classes;
-use App\Models\Users;
+use App\Models\User;
 
 
 use Illuminate\Http\Request;
 
 class ClassesController extends Controller
 {
- public function index(Request $request)
-{
-    $search = $request->input('search');
-    $classes = Classes::with('trainer')
-        ->when($search, function ($query, $search) {
-            return $query->where('name_class', 'like', '%' . $search . '%');
-        })
-        ->paginate(5);
-    return view('admin.admin_classes.index', compact('classes'));
-}
+    public function index(Request $request)
+    {
+        //controller punya admin
+
+        $search = $request->input('search');
+        $classes = Classes::with('trainer')
+            ->when($search, function ($query, $search) {
+                return $query->where('name_class', 'like', '%' . $search . '%');
+            })
+            ->paginate(5);
+        return view('admin.admin_classes.index', compact('classes'));
+    }
 
 
     public function create()
     {
-        $trainers = Users::where('role', 'trainer')->get();
-        $classes = Classes::with('trainer')->paginate(10);  
+        $trainers = User::where('role', 'trainer')->get();
+        $classes = Classes::with('trainer')->paginate(10);
 
         return view('admin.admin_classes.create', compact('trainers'));
-        
     }
 
     public function store(Request $request)
@@ -49,7 +51,7 @@ class ClassesController extends Controller
     public function edit($id)
     {
         $class = Classes::findOrFail($id);
-        $trainers = Users::where('role', 'trainer')->get();
+        $trainers = User::where('role', 'trainer')->get();
         return view('classes.edit', compact('class', 'trainers'));
     }
 
@@ -76,5 +78,17 @@ class ClassesController extends Controller
         $class->delete();
 
         return redirect()->route('classes.index')->with('success', 'Class successfully deleted.');
+    }
+
+    //controller punya user
+    public function indexUser(Request $request)
+    {
+        $search = $request->input('search');
+        $classes = Classes::with('trainer')
+            ->when($search, function ($query, $search) {
+                return $query->where('name_class', 'like', '%' . $search . '%');
+            })
+            ->paginate(5);
+        return view('menu.classes', compact('classes'));
     }
 }

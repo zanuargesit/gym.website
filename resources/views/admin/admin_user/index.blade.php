@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/adminaccount.css') }}?v=1">
 </head>
+
 <body>
     <div class="container">
         <div class="row">
@@ -14,6 +16,12 @@
             <div class="col-6 left">
                 <div class="sub-title">
                     <h4>Manage</h4>
+                </div>
+                <div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
                 </div>
                 <div class="menu">
                     <li><button class="btn btn-secondary">Users</button></li>
@@ -55,22 +63,22 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $user->username }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->no_telepon }}</td>
-                                    <td>{{ ucfirst($user->role) }}</td>
-                                    <td>{{ ucfirst($user->status) }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.username.edit', $user->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                        <form action="{{ route('admin.username.destroy', $user->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $user->username }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->no_telepon }}</td>
+                                <td>{{ ucfirst($user->role) }}</td>
+                                <td>{{ ucfirst($user->status) }}</td>
+                                <td>
+                                    <a href="{{ route('admin.username.edit', $user->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <form action="{{ route('admin.username.destroy', $user->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -82,4 +90,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

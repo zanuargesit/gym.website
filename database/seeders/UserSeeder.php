@@ -15,28 +15,34 @@ class UserSeeder extends Seeder
     {
         User::create(
             [
+                'username' => 'user',
                 'name' => 'user',
                 'email' => 'user@gmail.com',
                 'password' => '12345678',
                 'no_telepon' => '0813123123',
-                'role' => 'user'
+                'role' => 'user',
+                'status' => 'inactive'
             ]
         );
 
         User::create([
+            'username' => 'admin',
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => '12345678',
             'no_telepon' => '0813123123',
-            'role' => 'admin'
+            'role' => 'admin',
+            'status' => 'inactive'
         ]);
 
         User::create([
+            'username' => 'trainer',
             'name' => 'trainer',
             'email' => 'trainer@gmail.com',
             'password' => '12345678',
             'no_telepon' => '0813123123',
-            'role' => 'trainer'
+            'role' => 'trainer',
+            'status' => 'inactive'
         ]);
     }
 }

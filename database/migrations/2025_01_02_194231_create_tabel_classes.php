@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('name_class');
             $table->string('description');
             $table->unsignedBigInteger('trainer_id'); // Relasi ke tabel users
-            $table->date('start_time');
-            $table->date('end_time');
+            $table->datetime('start_time');
+            $table->datetime('end_time');
             $table->integer('capacity');
             $table->timestamps();
 
-            $table->foreign('trainer_id')->references('id')->on('user')->onDelete('cascade');
+            $table->foreign('trainer_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('classes');
-
     }
 };

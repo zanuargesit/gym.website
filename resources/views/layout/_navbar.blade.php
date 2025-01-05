@@ -7,13 +7,13 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('dashboard')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('classes') }}">Classes</a>
+                    <a class="nav-link" href="{{ route('indexUserClasses') }}">Classes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Product</a>
+                    <a class="nav-link" href="{{route('indexUserProduct')}}">Product</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Feedback</a>
@@ -41,11 +41,14 @@
                     {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Profil</a></li>
+                    <li><a class="dropdown-item" href="{{route('profile.edit', Auth::user()->id)}}">Profil</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <a class="dropdown-item" href="{{ route('logout') }}">logout</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" style="text-decoration: none; color: red" class="btn btn-link">Logout</button>
+                    </form>
                     </li>
                 </ul>
             </div>

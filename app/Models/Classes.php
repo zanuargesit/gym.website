@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Classes extends Model
 {
-  
+
     protected $fillable = [
         'name_class',
         'description',
@@ -18,6 +18,6 @@ class Classes extends Model
 
     public function trainer()
     {
-        return $this->belongsTo(Users::class, 'trainer_id');
+        return $this->belongsTo(User::class, 'trainer_id');
     }
 }

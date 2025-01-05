@@ -36,7 +36,20 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($infologin)) {
-            return redirect('dashboard')->with('successLogin', 'Login Berhasil');
+            //mengambil info role
+            $user = Auth::user();
+
+            //logika berdasarkan role
+            if ($user->role == 'admin') {
+                return redirect()->route('admin.username.index')->with('successLogin', 'Login Berhasil');
+            } elseif ($user->role == 'user') {
+                return redirect('dashboard')->with('successLogin', 'Login Berhasil');
+            } elseif ($user->role == 'trainer') {
+                return redirect('dashboard.trainer')->with('successLogin', 'Login Berhasil');
+            }
+
+            //jika tidak dikenalia
+            return redirect('auth.login')->with('error', 'Anda belum punya akun');
         } else {
             return back()->with('failed', 'Login Gagal, Email atau Password salah!')->withInput();
         }
@@ -59,29 +72,23 @@ class AuthController extends Controller
             'no_telepon' => $request->no_telepon,
         ]);
 
-        Auth::login($user); //langsung login
-
         // Cek apakah user berhasil disimpan, jika ya login dan redirect ke dashboard
         if ($user) {
             // Login otomatis setelah registrasi
             Auth::login($user);
 
             // Redirect ke dashboard dengan pesan sukses
-            return redirect(route('dashboard'))->with('successRegister', 'Register Berhasil');
+            return redirect(route('user.dashboard'))->with('successRegister', 'Register Berhasil');
         } else {
             // Jika gagal menyimpan, redirect kembali ke halaman register dengan pesan error
             return redirect(route('register'))->with('errorRegister', 'Register Gagal');
         }
     }
+    /******  16e665e0-8151-46ef-8533-c5021f5fc6bd  *******/
 
     public function logout()
     {
-        Auth::logout(Auth::user());
-        return redirect('/')->with('successLogout', 'Logout Berhasil');
-    }
-
-    function dashboarduser()
-    {
-        return view('dashboard');
+        Auth::logout();
+        return redirect('/')->with('successLogout', 'Anda telah Logout');
     }
 }

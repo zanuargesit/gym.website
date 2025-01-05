@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $users = Users::when($search, function ($query, $search) {
+        $users = User::when($search, function ($query, $search) {
             return $query->where('username', 'like', '%' . $search . '%')
                 ->orWhere('email', 'like', '%' . $search . '%');
         })->paginate(10);
@@ -27,17 +27,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // Log input request untuk memastikan data diterima
-    
+
         $request->validate([
-           'username' => 'required|string|max:255|unique:user',
-    'email' => 'required|email|max:255|unique:user',
-    'password' => 'required|string|min:6|',
+            'username' => 'required|string|max:255|unique:user',
+            'email' => 'required|email|max:255|unique:user',
+            'password' => 'required|string|min:6|',
             'no_telepon' => 'nullable|string|max:15',
             'role' => 'required|in:admin,user,trainer',
             'status' => 'required|in:active,inactive',
         ]);
-    
-        Users::create([
+
+        User::create([
             'username' => $request->input('username'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
@@ -45,19 +45,19 @@ class UserController extends Controller
             'role' => $request->input('role'),
             'status' => $request->input('status'),
         ]);
-    
+
         return redirect()->route('admin.username.index')->with('success', 'User successfully created.');
     }
-    
+
     public function edit($id)
     {
-        $user = Users::findOrFail($id);
+        $user = User::findOrFail($id);
         return view('admin.username.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
     {
-        $user = Users::findOrFail($id);
+        $user = User::findOrFail($id);
 
         $request->validate([
             'username' => 'required|string|max:255|unique:user,username,' . $user->id,
@@ -82,10 +82,9 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = Users::findOrFail($id);
+        $user = User::findOrFail($id);
         $user->delete();
 
         return redirect()->route('admin.username.index')->with('success', 'User successfully deleted.');
     }
 }
-

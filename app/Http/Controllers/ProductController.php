@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Store;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,13 +12,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    //controller punya admin
+
     public function index(Request $request)
     {
         // Get search term if provided
         $search = $request->input('search');
 
         // Fetch products, optionally filtered by search term
-        $stores = Store::when($search, function ($query, $search) {
+        $stores = Product::when($search, function ($query, $search) {
             return $query->where('name_product', 'like', '%' . $search . '%');
         })->paginate(5);  // Pagination for 5 products per page
 
@@ -52,7 +55,7 @@ class ProductController extends Controller
         ]);
 
         // Create a new product
-        Store::create([
+        Product::create([
             'name_product' => $request->input('name_product'),
             'deskripsi' => $request->input('deskripsi'),
             'harga' => $request->input('harga'),
@@ -71,7 +74,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $store = Store::findOrFail($id);
+        $store = Product::findOrFail($id);
         return view('admin.admin_store.edit', compact('store'));
     }
 
@@ -85,7 +88,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         // Find the product by its ID
-        $store = Store::findOrFail($id);
+        $store = Product::findOrFail($id);
 
         // Validate the incoming data
         $request->validate([
@@ -116,12 +119,24 @@ class ProductController extends Controller
     public function destroy($id)
     {
         // Find the product by its ID
-        $store = Store::findOrFail($id);
+        $store = Product::findOrFail($id);
 
         // Delete the product from the database
         $store->delete();
 
         // Redirect back to the product list with a success message
         return redirect()->route('admin.store.index')->with('success', 'Product successfully deleted.');
+    }
+
+    //controller punya user
+    public function indexUser(Request $request)
+    {
+        $search = $request->input('search');
+        $classes = Product::with('trainer')
+            ->when($search, function ($query, $search) {
+                return $query->where('name_product', 'like', '%' . $search . '%');
+            })
+            ->paginate(5);
+        return view('menu.products', compact('classes'));
     }
 }
