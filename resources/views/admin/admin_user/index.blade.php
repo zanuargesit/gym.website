@@ -10,10 +10,10 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-6 left">
-                <div class="sub-title">
+        <div class="col-md-3 left">
+        <div class="sub-title">
                     <h4>Manage</h4>
                 </div>
                 <div>
@@ -21,6 +21,7 @@
                         @csrf
                         <button type="submit" class="btn btn-danger">Logout</button>
                     </form>
+                    <br><br>
                 </div>
                 <div class="menu">
                     <li><a href="{{ route('admin.username.index') }}" class="btn btn-secondary">Users</a></li>
