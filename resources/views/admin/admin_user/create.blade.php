@@ -11,13 +11,24 @@
 </head>
 
 <body>
-    <form action="{{ route('admin.username.store') }}" method="POST">
+    <div class="container">
+        <div class="profil">
+            <button class="btn btn-primary">Profil</button>
+            <h5><a href="">Upload Photo</a></h5>
+        </div>
 
-        <div class="container">
-            <div class="profil">
-                <button class="btn btn-primary">Profil</button>
-                <h5><a href="">Upload Photo</a></h5>
-            </div>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <form action="{{ route('admin.username.store') }}" method="POST">
+            @csrf
             <div class="form">
                 <div class="row">
                     <div class="col-6">
@@ -26,6 +37,11 @@
                             <input class="form-control" type="text" name="username" placeholder="Enter username"
                                 value="{{ old('username') }}" required>
                         </div>
+                        <div class="input">
+                            <h5>Name</h5>
+                            <input class="form-control" type="text" name="name" placeholder="Enter name" value="{{ old('name') }}" required>
+                        </div>
+
                         <div class="input">
                             <h5>Email</h5>
                             <input class="form-control" type="email" name="email" placeholder="Enter email"
@@ -63,15 +79,13 @@
                 </div>
             </div>
             <div class="footer">
-                @csrf
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 
 </html>

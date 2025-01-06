@@ -12,7 +12,6 @@
 <body>
     <div class="container">
         <div class="row">
-            <!-- Left Sidebar -->
             <div class="col-6 left">
                 <div class="sub-title">
                     <h4>Manage</h4>
@@ -24,19 +23,16 @@
                     </form>
                 </div>
                 <div class="menu">
-                    <li><button class="btn btn-secondary">Users</button></li>
-                    <li><button class="btn btn-outline-secondary">Trainers</button></li>
-                    <li><button class="btn btn-outline-secondary">Classes</button></li>
-                    <li><button class="btn btn-outline-secondary">Memberships</button></li>
-                    <li><button class="btn btn-outline-secondary">Products</button></li>
-                    <li><button class="btn btn-outline-secondary">Orders</button></li>
+                    <li><a href="{{ route('admin.username.index') }}" class="btn btn-secondary">Users</a></li>
+                    <li><a href="{{ route('admin.classes.index') }}" class="btn btn-outline-secondary">Classes</a></li>
+                    <li><a href="{{ route('admin.joinclasses.index') }}" class="btn btn-outline-secondary">Join Classes</a></li>
+                    <li><a href="{{ route('admin.store.index') }}" class="btn btn-outline-secondary">Products</a></li>
                 </div>
                 <div class="create">
                     <a href="{{ route('admin.username.create') }}" class="btn btn-primary">Add User</a>
                 </div>
             </div>
 
-            <!-- Right Content -->
             <div class="col-6 right">
                 <div class="header">
                     <div class="head">

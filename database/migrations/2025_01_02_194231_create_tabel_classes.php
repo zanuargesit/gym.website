@@ -6,16 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('name_class');
             $table->string('description');
-            $table->unsignedBigInteger('trainer_id'); // Relasi ke tabel users
+            $table->unsignedBigInteger('trainer_id'); 
             $table->datetime('start_time');
             $table->datetime('end_time');
             $table->integer('capacity');
@@ -25,9 +23,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::dropIfExists('classes');

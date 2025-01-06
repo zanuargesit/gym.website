@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                 'password' => '12345678',
                 'no_telepon' => '0813123123',
                 'role' => 'user',
-                'status' => 'inactive'
+                'status' => 'active'
             ]
         );
 

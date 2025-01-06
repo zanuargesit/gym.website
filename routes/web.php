@@ -7,6 +7,8 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\classCartController;
+use App\Http\Controllers\AdminJoinClassController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserClassesController;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +66,18 @@ Route::prefix('admin')->group(function () {
         Route::put('/classes/{id}', [ClassesController::class, 'update'])->name('admin.classes.update');
         Route::delete('/classes/{id}', [ClassesController::class, 'destroy'])->name('admin.classes.destroy');
         Route::resource('admin/classes', ClassesController::class);
+
+        Route::get('/store', [ProductController::class, 'index'])->name('admin.store.index');
+        Route::get('/store/create', [ProductController::class, 'create'])->name('admin.store.create');
+        Route::post('/store', [ProductController::class, 'store'])->name('admin.store.store');
+        Route::get('/store/{id}/edit', [ProductController::class, 'edit'])->name('admin.store.edit');
+        Route::put('/store/{id}', [ProductController::class, 'update'])->name('admin.store.update');
+        Route::delete('/store/{id}', [ProductController::class, 'destroy'])->name('admin.store.destroy');
+        Route::resource('admin/store', ProductController::class);
+
+        Route::get('/joinclasses', [AdminJoinClassController::class, 'index'])->name('admin.joinclasses.index');
+Route::delete('/joinclasses/{id}', [AdminJoinClassController::class, 'destroy'])->name('admin.joinclasses.destroy');
+
     });
 });
 
@@ -120,3 +134,12 @@ Route::prefix('admin')->group(function () {
 Route::get('/unauthorized', function () {
     return response('Unauthorized', 403);
 })->name('unauthorized');
+
+
+
+
+Route::post('/classes/join/{classId}', [ClassCartController::class, 'joinClass'])->name('classes.joinClass');
+
+Route::get('/user/classes', [ClassesController::class, 'indexUser'])->name('user.classes.index');
+
+Route::get('/admin/classes', [ClassesController::class, 'index'])->name('admin.classes.index');

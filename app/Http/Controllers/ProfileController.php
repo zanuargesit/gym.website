@@ -14,39 +14,28 @@ class ProfileController extends Controller
         return view('user.dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+ 
     public function create() {}
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
-        //
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(string $id)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
         return view('user.profile', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $user = User::findOrFail($id);
@@ -64,7 +53,6 @@ class ProfileController extends Controller
                 Storage::delete('public/' . $user->foto);
             }
 
-            // Mengupload foto baru
             $filePath = $request->file('foto')->store('uploads', 'public');
             $user->foto = $filePath;
         }
@@ -73,9 +61,7 @@ class ProfileController extends Controller
         return redirect()->route('profile.edit', $user->id)->with('success', 'Profilmu berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+  
     public function destroy(string $id)
     {
         //
@@ -85,7 +71,6 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($id);
 
-        // Hapus foto dari storage
         if ($user->foto) {
             Storage::delete('public/' . $user->foto);
             $user->foto = null;

@@ -26,12 +26,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Log input request untuk memastikan data diterima
-
         $request->validate([
-            'username' => 'required|string|max:255|unique:user',
-            'email' => 'required|email|max:255|unique:user',
-            'password' => 'required|string|min:6|',
+            'username' => 'required|string|max:255|unique:users',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
             'no_telepon' => 'nullable|string|max:15',
             'role' => 'required|in:admin,user,trainer',
             'status' => 'required|in:active,inactive',
@@ -39,6 +38,7 @@ class UserController extends Controller
 
         User::create([
             'username' => $request->input('username'),
+            'name' => $request->input('name'),  
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'no_telepon' => $request->input('no_telepon'),
@@ -49,19 +49,19 @@ class UserController extends Controller
         return redirect()->route('admin.username.index')->with('success', 'User successfully created.');
     }
 
-    public function edit($id)
+    public function edit($username)
     {
-        $user = User::findOrFail($id);
-        return view('admin.username.edit', compact('user'));
+        $user = User::where('username', $username)->firstOrFail();
+        return view('admin.admin_user.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $username)
     {
-        $user = User::findOrFail($id);
+        $user = User::where('username', $username)->firstOrFail();
 
         $request->validate([
-            'username' => 'required|string|max:255|unique:user,username,' . $user->id,
-            'email' => 'required|email|max:255|unique:user,email,' . $user->id,
+            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:6|confirmed',
             'no_telepon' => 'nullable|string|max:15',
             'role' => 'required|in:admin,user,trainer',
@@ -80,9 +80,9 @@ class UserController extends Controller
         return redirect()->route('admin.username.index')->with('success', 'User successfully updated.');
     }
 
-    public function destroy($id)
+    public function destroy($username)
     {
-        $user = User::findOrFail($id);
+        $user = User::where('username', $username)->firstOrFail();
         $user->delete();
 
         return redirect()->route('admin.username.index')->with('success', 'User successfully deleted.');

@@ -16,7 +16,7 @@
             <button class="btn btn-primary">Profile</button>
             <h5><a href="#">Upload Photo</a></h5>
         </div>
-        <<form action="{{ route('admin.classes.store') }}" method="POST">
+        <form action="{{ route('admin.classes.store') }}" method="POST">
     @csrf
     <div class="form">
         <div class="row">

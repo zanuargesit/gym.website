@@ -8,12 +8,9 @@ use Illuminate\Support\Str;
 
 class ClassesSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+  
     public function run(): void
     {
-        // Pastikan ada trainer di tabel users
         $trainers = DB::table('users')->where('role', 'trainer')->pluck('id');
 
         if ($trainers->isEmpty()) {
@@ -21,7 +18,6 @@ class ClassesSeeder extends Seeder
             return;
         }
 
-        // Data dummy untuk tabel classes
         $classes = [
             [
                 'name_class' => 'Yoga Beginner',
@@ -49,7 +45,7 @@ class ClassesSeeder extends Seeder
             ],
         ];
 
-        // Masukkan data ke database
+   
         DB::table('classes')->insert($classes);
     }
 }

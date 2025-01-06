@@ -23,13 +23,11 @@
                 <div class="col-6">
                     <div class="input">
                         <h5>Product Name</h5>
-                        <!-- Display current product name here -->
                         <input class="form-control" type="text" name="name_product" placeholder="Enter product name"
                                value="{{ old('name_product', $store->name_product) }}" required>
                     </div>
                     <div class="input">
                         <h5>Description</h5>
-                        <!-- Display current product description here -->
                         <textarea class="form-control" style="height: 20rem;" name="deskripsi"
                                   placeholder="Enter description" required>{{ old('deskripsi', $store->deskripsi) }}</textarea>
                     </div>
@@ -38,13 +36,11 @@
 
                     <div class="input">
                         <h5>Price</h5>
-                        <!-- Display current product price here -->
                         <input class="form-control" type="number" name="harga" placeholder="Enter price"
                                value="{{ old('harga', $store->harga) }}" required>
                     </div>
                     <div class="input">
                         <h5>Stock Quantity</h5>
-                        <!-- Display current stock quantity here -->
                         <input class="form-control" type="number" name="stock" placeholder="Enter stock quantity"
                                value="{{ old('stock', $store->stock) }}" required>
                     </div>
@@ -52,7 +48,6 @@
             </div>
         </div>
         <div class="footer">
-            <!-- Form submit button -->
           
                 @csrf
                 @method('PUT')

@@ -31,55 +31,45 @@
                     </div>
                     @endif
                     <div class="form">
-                        <form action="{{ route('register') }}" method="POST">
+                        <form action="{{ route('admin.username.store') }}" method="POST">
                             @csrf
-                            <div class="row-1">
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Nama</label>
-                                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
-                                        @error('name')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                            <div class="form">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="input">
+                                            <h5>Username</h5>
+                                            <input class="form-control" type="text" name="username" placeholder="Enter username"
+                                                value="{{ old('username') }}" required>
+                                        </div>
+                                        <div class="input">
+                                            <h5>Name</h5>
+                                            <input class="form-control" type="text" name="name" placeholder="Enter name" value="{{ old('name') }}" required>
+                                        </div>
+
+
+
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" required>
-                                        @error('password')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="no_telepon" class="form-label">Nomor Telepon</label>
-                                        <input type="text" name="no_telepon" class="form-control" value="{{ old('no_telepon') }}" required>
-                                        @error('no_telepon')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="text" name="email" class="form-control" value="{{ old('email') }}" required>
-                                        @error('email')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="cofirmed_password" class="form-label">Confirmed Password</label>
-                                        <input type="password" id="confirmed_password" name="confirmed_password" class="form-control" required>
-                                        <div id="password-error" class="text-danger" style="display: none;">Passwords do not match!</div>
-                                        @error('confirmed_password')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                    <div class="col-6">
+                                        <div class="input">
+                                            <h5>Email</h5>
+                                            <input class="form-control" type="email" name="email" placeholder="Enter email"
+                                                value="{{ old('email') }}" required>
+                                        </div>
+                                        <div class="input">
+                                            <h5>Password</h5>
+                                            <input class="form-control" type="password" name="password" placeholder="Enter password"
+                                                required>
+                                        </div>
+                                        <div class="input">
+                                            <h5>Phone Number</h5>
+                                            <input class="form-control" type="text" name="no_telepon" placeholder="Enter phone number"
+                                                value="{{ old('no_telepon') }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="submit">
-                                    <button type="submit" class="btn btn-primary"><a href="{{ route('login') }}" class="text-white" style="text-decoration: none">Login</a></button>
-                                    <button type="submit" class="btn btn-primary">Daftar</button>
-                                </div>
+                            <div class="footer">
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
                     </div>
