@@ -10,16 +10,17 @@
 </head>
 
 <body>
-    <div class="container">
+     <div class="container-fluid">
         <div class="row">
-            <div class="col-6 left">
-                <div class="sub-title">
+        <div class="col-md-3 left">
+        <div class="sub-title">
                     <h4>Manage</h4>
                 </div>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger">Logout</button>
                 </form>
+                <br><br>
                 <div class="menu">
                     <li><a href="{{ route('admin.username.index') }}" class="btn btn-outline-secondary">Users</a></li>
                     <li><a href="{{ route('admin.classes.index') }}" class="btn btn-outline-secondary">Classes</a></li>
@@ -33,11 +34,6 @@
                     <h2>Join Classes</h2>
                 </div>
                
-                    <div class="search">
-                        <form action="{{ route('admin.joinclasses.index') }}" method="GET">
-                            <input class="form-control" type="search" name="search" placeholder="Search Product" aria-label="Search" value="{{ request('search') }}">
-                        </form>
-                    </div>
             
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
