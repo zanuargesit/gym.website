@@ -1,54 +1,74 @@
-.container{
-    margin: 0;
-}
-.container .row .left{
-    background-color: rgba(0, 0, 0, 0.226);
-    width: 18rem;
-}
-.container .row .left .sub-title{
-    display: flex;
-    justify-content: start;
-    margin: 1rem 1rem;
-
-}
-.menu{
-    -ms-wrap-flow: horizontal;
-    gap: 0.5rem;
-    height: 56rem;
-
-}
-.menu li{
-    height: 2rem;
-    list-style: none;
-    margin: 1rem 1rem;
-
-}
-li button{
-    width: 15rem;
-    height: 2.25rem;
-}
-
-.create{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.create button{
-    width: 14rem;
-    height: 2.5rem;
-margin: 1rem 1rem;
-}
-
-.container .row .right{
-    width: 60rem;
-}
-
-.right .header .head{
-    display: flex;
-    justify-content: space-between;
-
-    padding: 0.5rem;
+body {
     background-color: #f8f9fa;
-    list-style-type: none;
+    font-family: 'poppins', sans-serif;
+}
+.left {
+    background-color: #ffffff;
+    border-right: 1px solid #dee2e6;
+    padding: 20px;
+    height: 100vh;
+}
+.left .sub-title h4 {
+    color: #495057;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.menu li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+.menu li button {
+    width: 100%;
+    text-align: left;
+}
+.right {
+    padding: 20px;
+}
+.header .head h2 {
+    color: #343a40;
+    font-weight: bold;
+}
+.header .search {
+    margin-top: 15px;
+}
+.header .search input {
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+.product-list table {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.product-list table th {
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+}
+.product-list table td {
+    text-align: center;
+    vertical-align: middle;
+}
+.product-list .btn {
+    border-radius: 30px;
+}
+.create a {
+    display: block;
+    margin-top: 20px;
+    border-radius: 20px;
+}
 
+.menu .btn-outline-secondary {
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.menu .btn-secondary {
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
 }

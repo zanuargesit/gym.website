@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="{{ asset('css/adminaccount.css') }}?v=1">
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-6 left">
-                <div class="sub-title">
+        <div class="col-md-3 left">
+        <div class="sub-title">
                     <h4>Manage</h4>
                 </div>
                 <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-danger">Logout</button>
                     </form>
+                    <br><br>
                     <div class="menu">
                     <li><a href="{{ route('admin.username.index') }}" class="btn btn-outline-secondary">Users</a></li>
                     <li><a href="{{ route('admin.classes.index') }}" class="btn btn-outline-secondary">Classes</a></li>
@@ -29,8 +30,8 @@
                 </div>
             </div>
 
-            <div class="col-6 right">
-                <div class="header">
+            <div class="col-md-9 right">
+                <div class="header d-flex justify-content-between align-items-center">
                     <div class="head">
                         <h2>Products</h2>
                     </div>
@@ -40,8 +41,8 @@
                         </form>
                     </div>
                 </div>
-                <div class="product-list mt-3">
-                    <table class="table table-striped">
+                <div class="product-list mt-4">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -72,7 +73,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $stores->links() }}
+                    <div class="mt-3">
+                        {{ $stores->links() }}
+                    </div>
                 </div>
             </div>
         </div>
