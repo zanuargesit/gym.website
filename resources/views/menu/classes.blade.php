@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="classes">
-    <div class="col-6">
+    <div class="col-12">
         <div class="head-1">
             <h2>Classes</h2>
             <button class="btn btn-primary">Filters</button>
@@ -27,7 +27,7 @@
                 <tbody>
                     @foreach($classes as $class)
                     <tr>
-                        <td>{{ $class->name }}</td>
+                        <td>{{ $class->name_class }}</td>
                         <td>{{ $class->description }}</td>
                         <td>{{ $class->trainer->name }}</td>
                         <td>{{ $class->start_time }}</td>

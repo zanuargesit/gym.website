@@ -1,106 +1,177 @@
-.container{
-    background-color: rgb(255, 255, 255);
-    max-width: 100%;
-    border: bl;
-  
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
 }
-.header{
+
+/* Container Styling */
+.container {
+    background-color: #fff;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Header Section */
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
-    background-color: #f8f9fa;
-    list-style-type: none;
-    margin: 0 0.5rem;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: #fff;
+    border-radius: 10px;
 }
-.header #menu{
-    display: flex;
 
+.header #menu {
+    display: flex;
     justify-content: end;
-    margin-left: 28rem;
-    gap: 1rem;
-}
-.header li{
-    margin-right: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-}
-.header li:hover{
-    color: red;
-    transition: color 0.5s ease;
-}
-.header img{
-    width: 3rem;
-    height: 3rem;
-    border-radius: 2rem;
-}
-.header .profile{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-    color: rgb(240, 157, 202);
-    font-weight: bold;
-}
-.classes{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    background-color: #f8f9fa;
-    list-style-type: none;
-    margin: 0 0.5rem;
-}
-.head-1{
-    display: flex;
-  margin: 0 0.5rem;
-  align-items: center;
- 
-  gap: 44rem;
-}
-.head h1{
-    font-weight: bold;
-}
-.head-1 button{
-   height: 2.5rem;
-   width: 7rem;
-   border-radius: 1rem;
-}
-.kategori{
-    display: flex;
-    
-    padding: 0.5rem;
-    background-color: #f8f9fa;
-    list-style-type: none;
-    margin: 0 0.5rem;
     gap: 1.5rem;
-    height: 34rem;
 }
-.kategori button{
-  width: 10rem;
-  height: 2rem;
-    border-radius: 1rem;
-    border: none;
-    background-color: rgba(128, 128, 128, 0.336);
-}
-.head-2{
-    display: flex;
- align-items: center;
- 
-    background-color: #f8f9fa;
-    list-style-type: none;
-    margin: 0 0.5rem;
-    gap: 39.1rem;
 
+.header li {
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
-.sub-title{
-    height: 34rem;
-    margin: 0 0.5rem;
+
+.header li:hover {
+    color: #e74c3c;
 }
-footer{
-    background-color: white;
-    color: black;
-    margin: 0 0.5rem;
+
+.header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.header .profile {
+    display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #ecf0f1;
+    font-weight: bold;
+}
+
+/* Classes Section */
+.classes {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.head-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.head-1 h2 {
+    font-size: 2rem;
+    color: #34495e;
+    font-weight: bold;
+}
+
+.head-1 button {
+    height: 40px;
+    width: 100px;
+    border-radius: 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.head-1 button:hover {
+    background-color: #2980b9;
+}
+
+.kategori table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ecf0f1;
+}
+
+.kategori th {
+    background-color: #34495e;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+}
+
+.kategori td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #bdc3c7;
+    color: #34495e;
+}
+
+.kategori tr:hover {
+    background-color: #dfe6e9;
+    transition: background-color 0.3s ease;
+}
+
+.kategori button {
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #27ae60;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.kategori button:hover {
+    background-color: #2ecc71;
+}
+
+.kategori .btn-secondary {
+    background-color: #95a5a6;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+/* Footer Section */
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px 0;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #e74c3c;
+}
+
+footer .btn-outline-light {
+    border: 1px solid #ecf0f1;
+    color: #ecf0f1;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+footer .btn-outline-light:hover {
+    background-color: #e74c3c;
+    color: #fff;
+    border: 1px solid #e74c3c;
 }
