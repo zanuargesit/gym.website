@@ -16,7 +16,7 @@
                     <a class="nav-link" href="{{route('indexUserProduct')}}">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Feedback</a>
+                    <a class="nav-link" href="{{route('feedback')}}">Feedback</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Member</a>

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\classCartController;
 use App\Http\Controllers\AdminJoinClassController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserClassesController;
 use Illuminate\Support\Facades\Route;
@@ -41,10 +42,19 @@ Route::group(
 
         Route::get('/product', [ProductController::class, 'indexUser'])->name('indexUserProduct');
 
-        Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+        Route::get('/feedback', [CommentController::class, 'index'])->name('feedback');
 
         Route::get('/member', [MemberController::class, 'index'])->name('member');
-        
+
+
+        Route::post('/classes/join/{classId}', [ClassCartController::class, 'joinClass'])->name('classes.joinClass');
+
+        Route::get('/user/classes', [ClassesController::class, 'indexUser'])->name('user.classes.index');
+
+        Route::get('/admin/classes', [ClassesController::class, 'index'])->name('admin.classes.index');
+
+        Route::get('/comments', [CommentController::class, 'index'])->name('menu.comment');
+        Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
         Route::resource('profile', ProfileController::class);
         Route::delete('/profile/{id}/photo', [ProfileController::class, 'deletePhoto'])->name('profile.deletePhoto');
@@ -61,7 +71,8 @@ Route::prefix('admin')->group(function () {
         Route::put('/users/{id}', [UserController::class, 'update'])->name('admin.username.update');
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.username.destroy');
 
-
+        Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+        Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
         // mengatur data clasees
         Route::get('/classes', [ClassesController::class, 'index'])->name('admin.classes.index');
         Route::get('/classes/create', [ClassesController::class, 'create'])->name('admin.classes.create');
@@ -80,8 +91,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('admin/store', ProductController::class);
 
         Route::get('/joinclasses', [AdminJoinClassController::class, 'index'])->name('admin.joinclasses.index');
-Route::delete('/joinclasses/{id}', [AdminJoinClassController::class, 'destroy'])->name('admin.joinclasses.destroy');
-
+        Route::delete('/joinclasses/{id}', [AdminJoinClassController::class, 'destroy'])->name('admin.joinclasses.destroy');
     });
 });
 
@@ -138,12 +148,3 @@ Route::delete('/joinclasses/{id}', [AdminJoinClassController::class, 'destroy'])
 Route::get('/unauthorized', function () {
     return response('Unauthorized', 403);
 })->name('unauthorized');
-
-
-
-
-Route::post('/classes/join/{classId}', [ClassCartController::class, 'joinClass'])->name('classes.joinClass');
-
-Route::get('/user/classes', [ClassesController::class, 'indexUser'])->name('user.classes.index');
-
-Route::get('/admin/classes', [ClassesController::class, 'index'])->name('admin.classes.index');
