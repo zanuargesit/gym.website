@@ -10,104 +10,70 @@
 </head>
 
 <body>
-
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12">
-                <div class="header">
-                    <span>GYMKITA</span>
-                </div>
-                <div class="main">
-                    <div class="title">
-                        <h2>REGISTER</h2>
-                    </div>
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                    <div class="form">
-                        <form action="{{ route('register') }}" method="POST">
-                            @csrf
-                            <div class="form">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="input">
-                                            <h5>Username</h5>
-                                            <input class="form-control" type="text" name="username" placeholder="Enter username"
-                                                value="{{ old('username') }}" required>
-                                        </div>
-                                        <div class="input">
-                                            <h5>Name</h5>
-                                            <input class="form-control" type="text" name="name" placeholder="Enter name" value="{{ old('name') }}" required>
-                                        </div>
-                                        <div class="input">
-                                            <h5>Email</h5>
-                                            <input class="form-control" type="email" name="email" placeholder="Enter email"
-                                                value="{{ old('email') }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        
-                                        <div class="mb-3">
-        <label for="confirmed_password" class="form-label">Konfirmasi Password</label>
-        <input type="password" name="confirmed_password" class="form-control" placeholder="Masukkan ulang password" required>
-    </div>
+        
+        <div class="left-column">
+            <h2>GYMKITA</h2>
+            <p>Join our community and achieve your fitness goals with us!</p>
+        </div>
 
-                                        <div class="input">
-                                            <h5>Password</h5>
-                                            <input class="form-control" type="password" name="password" placeholder="Enter password"
-                                                required>
-                                        </div>
-                                        <div class="input">
-                                            <h5>Phone Number</h5>
-                                            <input class="form-control" type="text" name="no_telepon" placeholder="Enter phone number"
-                                                value="{{ old('no_telepon') }}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="footer">
-                                <button type="submit" class="btn btn-primary">Register</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="have_account">
-                        <div class="line">
-                            <hr>
-                            <span> or</span>
-                            <hr>
+       
+        <div class="right-column">
+            <div class="header text-center">
+                <h2>REGISTER</h2>
+            </div>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            <form action="{{ route('register') }}" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input class="form-control" type="text" name="username" placeholder="Masukkan Username"
+                                value="{{ old('username') }}" required>
                         </div>
-                        <div class="log">
-                            <div class="d-flex align-items-left login">
-                                <img src="{{ asset('img/facebook.png') }}" alt="Facebook" width="40" height="40" class="me-2">
-                                <button class="btn">LOGIN WITH FACEBOOK</button>
-                            </div>
-                            <div class="d-flex align-items-left mt-2 login">
-                                <img src="{{ asset('img/twitter.png') }}" alt="Twitter" width="40" height="40" class="me-2">
-                                <button class="btn">LOGIN WITH TWITTER</button>
-                            </div>
-                            <div class="d-flex align-items-left mt-2 login">
-                                <img src="{{ asset('img/google.png') }}" alt="Google" width="40" height="40" class="me-2">
-                                <button class="btn">LOGIN WITH GOOGLE</button>
-                            </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input class="form-control" type="text" name="name" placeholder="Masukkan nama"
+                                value="{{ old('name') }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input class="form-control" type="email" name="email" placeholder="Masukkan email"
+                                value="{{ old('email') }}" required>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input class="form-control" type="password" name="password" placeholder="Masukkan password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmed_password" class="form-label">Confirm Password</label>
+                            <input type="password" name="confirmed_password" class="form-control"
+                                placeholder="konfirmasi password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="no_telepon" class="form-label">Phone Number</label>
+                            <input class="form-control" type="text" name="no_telepon" placeholder="Masukkan Nomor Telepon"
+                                value="{{ old('no_telepon') }}">
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-6  d-flex justify-content-center align-items-center gym">
-                <img src="{{ asset('img/gym.jpg') }}" alt="Gym" class="img-fluid">
-            </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
-
-</html>

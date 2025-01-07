@@ -1,131 +1,111 @@
-.container {
-    max-width: 100%;
+body {
+    font-family: 'poppins', sans-serif;
     margin: 0;
     padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/img/gymbglog2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #f9fafb;
 }
 
-.row {
-    max-width: 100%;
-    padding: 0;
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Warna hitam semi-transparan */
+    z-index: -1; /* Pastikan tetap di belakang konten */
 }
 
-.header {
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #f8f9fa;
-    list-style-type: none;
-    padding: 0.5rem;
-    margin: 0 1rem;
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-.main {
-    justify-items: center;
-    max-width: 100%;
-    margin: 2rem 0;
-}
-
-.title {
+.left-column {
+    background: url('/img/gymbg.jpg') no-repeat;
+    background-size: cover;
+    color: #fff;
+    padding: 50px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
-    margin: 4rem 0;
 }
 
-.form {
-    margin: 2rem 0;
-
-}
-.row-1{
-    
-    display: flex;
-       
-   gap: 4rem;
-}
-form {
-
-    padding: 4rem 14rem;
+.left-column h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-.mb-3 {
-    margin: 2rem 0;
-}
-
-.submit {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
-.line {
-    gap: 10px;
-    display: flex;
+.left-column p {
+    font-size: 1.2rem;
+    width: 100%;
     justify-content: center;
 }
 
-hr {
-    width: 50%;
+.right-column {
+    flex: 1;
+    background: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.login {
-    background-color: #3B579D;
-    color: white;
-    border-radius: 1rem;
-    margin: 1rem 0;
+.form-label {
+    font-weight: bold;
 }
 
-.login .btn {
-    font-size: 0.75rem;
-    width: 14rem;
-    color: white;
-}
-
-.login .me-2 {
-    border-radius: 1rem;
-}
-
-.col-6 {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.gym {
-    height: 100%;
-}
-
-.gym img {
+.btn-primary {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0.5rem;
+    border-radius: 20px;
 }
-    @media (max-width: 768px) {
-        .row {
-            flex-direction: column;
-        }
 
-        .gym {
-            margin-top: 2rem;
-            height: auto;
-        }
+.social-login button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #333;
+}
 
-        .submit {
-            justify-content: center;
-        }
-    }
+.social-login button img {
+    margin-right: 10px;
+}
 
-    @media (max-width: 576px) {
-        .header {
-            font-size: 1.25rem;
-        }
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
 
-        .title h2 {
-            font-size: 1.5rem;
-        }
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+}
 
-        .login .btn {
-            font-size: 0.875rem;
-        }
-    }
+.divider:not(:empty)::before {
+    margin-right: 10px;
+}
+
+.divider:not(:empty)::after {
+    margin-left: 10px;
+}
