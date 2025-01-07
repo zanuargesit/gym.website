@@ -49,16 +49,17 @@ class UserController extends Controller
         return redirect()->route('admin.username.index')->with('success', 'User successfully created.');
     }
 
-    public function edit($username)
+    public function edit($id)
     {
-        $user = User::where('username', $username)->firstOrFail();
+        $user = User::findOrFail($id);
         return view('admin.admin_user.edit', compact('user'));
     }
-
-    public function update(Request $request, $username)
+    
+    
+    public function update(Request $request, $id)
     {
-        $user = User::where('username', $username)->firstOrFail();
-
+        $user = User::findOrFail($id);
+    
         $request->validate([
             'username' => 'required|string|max:255|unique:users,username,' . $user->id,
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
@@ -67,7 +68,7 @@ class UserController extends Controller
             'role' => 'required|in:admin,user,trainer',
             'status' => 'required|in:active,inactive',
         ]);
-
+    
         $user->update([
             'username' => $request->username,
             'email' => $request->email,
@@ -76,9 +77,11 @@ class UserController extends Controller
             'role' => $request->role,
             'status' => $request->status,
         ]);
-
+    
         return redirect()->route('admin.username.index')->with('success', 'User successfully updated.');
     }
+    
+    
 
     public function destroy($username)
     {

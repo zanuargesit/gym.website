@@ -52,32 +52,36 @@ class AuthController extends Controller
         }
     }
 
-    function register(Request $request)
+    public function register(Request $request)
     {
         $request->validate([
+            "username" => "required|unique:users",
             "name" => "required",
             "email" => "required|email|unique:users",
             "password" => "required|min:8",
             "confirmed_password" => "required|same:password",
             "no_telepon" => "required",
         ]);
-
+        
+    
         $user = User::create([
+            'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'no_telepon' => $request->no_telepon,
+            'role' => 'user',
+            'status' => 'inactive',
         ]);
-
+        
+    
         if ($user) {
-            Auth::login($user);
-
-            return redirect(route('user.dashboard'))->with('successRegister', 'Register Berhasil');
-        } else {
-            return redirect(route('register'))->with('errorRegister', 'Register Gagal');
+            return redirect()->route('login')->with('successRegister', 'Registrasi berhasil, akun Anda menunggu aktivasi.');
         }
+    
+        return back()->with('errorRegister', 'Registrasi gagal, coba lagi.');
     }
-
+    
     public function logout()
     {
         Auth::logout();

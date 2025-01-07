@@ -31,7 +31,7 @@
                     </div>
                     @endif
                     <div class="form">
-                        <form action="{{ route('admin.username.store') }}" method="POST">
+                        <form action="{{ route('register') }}" method="POST">
                             @csrf
                             <div class="form">
                                 <div class="row">
@@ -45,16 +45,19 @@
                                             <h5>Name</h5>
                                             <input class="form-control" type="text" name="name" placeholder="Enter name" value="{{ old('name') }}" required>
                                         </div>
-
-
-
-                                    </div>
-                                    <div class="col-6">
                                         <div class="input">
                                             <h5>Email</h5>
                                             <input class="form-control" type="email" name="email" placeholder="Enter email"
                                                 value="{{ old('email') }}" required>
                                         </div>
+                                    </div>
+                                    <div class="col-6">
+                                        
+                                        <div class="mb-3">
+        <label for="confirmed_password" class="form-label">Konfirmasi Password</label>
+        <input type="password" name="confirmed_password" class="form-control" placeholder="Masukkan ulang password" required>
+    </div>
+
                                         <div class="input">
                                             <h5>Password</h5>
                                             <input class="form-control" type="password" name="password" placeholder="Enter password"
@@ -69,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="footer">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary">Register</button>
                             </div>
                         </form>
                     </div>

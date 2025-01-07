@@ -21,35 +21,50 @@
             @method('PUT')
             <div class="form">
                 <div class="row">
-
                     <div class="col-6">
                         <div class="input">
                             <h5>Username</h5>
-                            <input class="form-control" type="text" name="username" value="{{ $user->username }}" placeholder="Enter your username" required>
+                            <input class="form-control" type="text" name="username" value="{{ old('username', $user->username) }}" placeholder="Enter your username" required>
+                            @error('username')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="input">
                             <h5>Email</h5>
-                            <input class="form-control" type="email" name="email" value="{{ $user->email }}" placeholder="Enter your email" required>
+                            <input class="form-control" type="email" name="email" value="{{ old('email', $user->email) }}" placeholder="Enter your email" required>
+                            @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="input">
                             <h5>Status</h5>
                             <select class="form-select" name="status" required>
-                                <option value="active" {{ $user->status == 'active' ? 'selected' : '' }}>Active</option>
-                                <option value="inactive" {{ $user->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                                <option value="active" {{ old('status', $user->status) == 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="inactive" {{ old('status', $user->status) == 'inactive' ? 'selected' : '' }}>Inactive</option>
                             </select>
+                            @error('status')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-6 kolom2">
                         <div class="input">
                             <h5>Role</h5>
                             <select class="form-select" name="role" required>
-                                <option value="trainer" {{ $user->role == 'trainer' ? 'selected' : '' }}>Trainer</option>
-                                <option value="member" {{ $user->role == 'member' ? 'selected' : '' }}>Member</option>
+                                <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
+                                <option value="trainer" {{ old('role', $user->role) == 'trainer' ? 'selected' : '' }}>Trainer</option>
                             </select>
+                            @error('role')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="input">
                             <h5>Phone Number</h5>
-                            <input class="form-control" type="text" name="no_telepon" value="{{ $user->no_telepon }}" placeholder="Enter your phone number">
+                            <input class="form-control" type="text" name="no_telepon" value="{{ old('no_telepon', $user->no_telepon) }}" placeholder="Enter your phone number">
+                            @error('no_telepon')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

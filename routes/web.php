@@ -24,7 +24,9 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 
 Route::get('/products', [ProductController::class, 'index'])->name('products');
@@ -42,6 +44,7 @@ Route::group(
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
 
         Route::get('/member', [MemberController::class, 'index'])->name('member');
+        
 
         Route::resource('profile', ProfileController::class);
         Route::delete('/profile/{id}/photo', [ProfileController::class, 'deletePhoto'])->name('profile.deletePhoto');
@@ -57,6 +60,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('admin.username.edit');
         Route::put('/users/{id}', [UserController::class, 'update'])->name('admin.username.update');
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.username.destroy');
+
 
         // mengatur data clasees
         Route::get('/classes', [ClassesController::class, 'index'])->name('admin.classes.index');
