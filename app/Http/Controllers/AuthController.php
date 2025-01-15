@@ -43,8 +43,9 @@ class AuthController extends Controller
             } elseif ($user->role == 'user') {
                 return redirect('dashboard')->with('successLogin', 'Login Berhasil');
             } elseif ($user->role == 'trainer') {
-                return redirect('dashboard.trainer')->with('successLogin', 'Login Berhasil');
+                return redirect()->route('trainer.profile')->with('successLogin', 'Login Berhasil');
             }
+            
 
             return redirect('auth.login')->with('error', 'Anda belum punya akun');
         } else {

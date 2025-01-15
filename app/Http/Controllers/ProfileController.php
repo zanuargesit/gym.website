@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+/*************  ✨ Codeium Command 🌟  *************/
     public function index()
     {
         return view('user.dashboard');
     }
+/******  514f1ffe-3b25-4047-9ad6-23196320d66d  *******/
 
  
     public function create() {}
@@ -29,12 +31,12 @@ class ProfileController extends Controller
         
     }
 
-   
     public function edit(string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('joinClasses.class')->findOrFail($id);
         return view('user.profile', compact('user'));
     }
+    
 
     public function update(Request $request, string $id)
     {

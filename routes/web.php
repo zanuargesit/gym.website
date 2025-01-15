@@ -12,7 +12,9 @@ use App\Http\Controllers\AdminJoinClassController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserClassesController;
+use App\Http\Controllers\TrainerProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 
 // Route Dashboard
@@ -27,6 +29,12 @@ Route::get('/register', [AuthController::class, 'showRegister'])->name('register
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['auth', 'role:trainer']], function () {
+    Route::get('/trainer/profile', [TrainerProfileController::class, 'index'])->name('trainer.profile');
+    Route::put('/trainer/profile/{id}', [TrainerProfileController::class, 'updateTrainerProfile'])->name('trainer.profile.update');
+    Route::delete('/trainer/profile/{id}/photo', [TrainerProfileController::class, 'deletePhoto'])->name('trainer.profile.deletePhoto');
+});
 
 
 
@@ -58,6 +66,10 @@ Route::group(
 
         Route::resource('profile', ProfileController::class);
         Route::delete('/profile/{id}/photo', [ProfileController::class, 'deletePhoto'])->name('profile.deletePhoto');
+        Route::get('/user/classes', [ClassesController::class, 'indexUser'])->name('user.profile.index');
+
+        // Menghapus kelas yang diikuti
+        Route::delete('/joinclasses/{id}', [AdminJoinClassController::class, 'destroy'])->name('admin.joinclasses.destroy');
     }
 );
 
@@ -90,8 +102,7 @@ Route::prefix('admin')->group(function () {
         Route::delete('/store/{id}', [ProductController::class, 'destroy'])->name('admin.store.destroy');
         Route::resource('admin/store', ProductController::class);
 
-        Route::get('/joinclasses', [AdminJoinClassController::class, 'index'])->name('admin.joinclasses.index');
-        Route::delete('/joinclasses/{id}', [AdminJoinClassController::class, 'destroy'])->name('admin.joinclasses.destroy');
+ 
     });
 });
 

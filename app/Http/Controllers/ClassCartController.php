@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classes;
-use App\Models\JoinClass; 
+use App\Models\JoinClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,11 +25,11 @@ class ClassCartController extends Controller
                                  ->first();
 
         if ($existingJoin) {
-            return redirect()->route('classes.index')->with('error', 'You have already joined this class.');
+            return redirect()->route('user.profile.index')->with('error', 'You have already joined this class.');
         }
 
         if ($class->capacity <= 0) {
-            return redirect()->route('classes.index')->with('error', 'This class is full.');
+            return redirect()->route('user.profile.index')->with('error', 'This class is full.');
         }
 
         $class->decrement('capacity');
@@ -37,10 +37,10 @@ class ClassCartController extends Controller
         JoinClass::create([
             'user_id' => $user->id,
             'class_id' => $classId,
-            'status' => 'confirmed', 
+            'status' => 'confirmed',
             'booking_date' => now(),
         ]);
 
-        return redirect()->route('classes.index')->with('success', 'You have successfully joined the class.');
+        return redirect()->route('user.profile.index')->with('success', 'You have successfully joined the class.');
     }
 }

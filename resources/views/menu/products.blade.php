@@ -1,44 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/style4.css') }}">
-</head>
+@extends('layout.master')
 
+@section('style')
+<link rel="stylesheet" href="{{ asset('css/style4.css') }}">
+@endsection
+
+@section('content')
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="col-4">
-                <li>
-                    GYMKITA
-                </li>
-            </div>
-            <div class="col-4" id="menu">
-                <li>Classes</li>
-                <li>Product</li>
-                <li>Feedback</li>
-                <li>Member</li>
-            </div>
-            <col-4>
-                <div class="profile">
-                    <span>Dicky Arya</span>
-                    <img src="{{ asset('img/gym.jpg') }}" alt="" width="40rem" height="40rem">
-                </div>
-            </col-4>
-        </div>
-        <div class="classes">
-            <div class="col-6 kolom">
-                <div class="head-1">
-                    <h2>Shop</h2>
-                    <button class="btn btn-primary">Filters</button>
-                </div>
-                <div class="head-1">
-                    <h5>Everything you need for your home gym</h5>
-                </div>
+   
                 <div class="kategori">
                     <button>All</button>
                     <button>Supplements</button>
@@ -349,4 +318,4 @@
     </div>
 </body>
 
-</html>
+</html>@endsection

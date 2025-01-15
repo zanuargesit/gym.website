@@ -18,10 +18,9 @@
             <ul class="menu">
                 <li><a href="{{ route('admin.username.index') }}" class="btn btn-outline-secondary">Users</a></li>
                 <li><a href="{{ route('admin.classes.index') }}" class="btn btn-outline-secondary">Classes</a></li>
-                <li><a href="{{ route('admin.joinclasses.index') }}" class="btn btn-outline-secondary">Join Classes</a></li>
                 <li><a href="{{ route('admin.store.index') }}" class="btn btn-outline-secondary">Products</a></li>
-                <li><a href="{{ route('admin.comments.index') }}" class="btn btn-secondary">Comments</a></li>
-            </ul>
+                <li><a href="{{ route('comments.index') }}" class="btn btn-secondary">Comments</a></li>
+                </ul>
         </div>
 
         <div class="col-6 right">

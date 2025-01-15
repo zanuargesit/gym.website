@@ -28,33 +28,40 @@ class ClassesController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name_class' => 'required|string|max:255',
-            'description' => 'required|string',
-            'trainer_id' => 'required|exists:users,id',
-            'start_time' => 'required|date_format:H:i',  
-            'end_time' => 'required|date_format:H:i',   
-            'capacity' => 'required|integer',
-        ]);
-    
-        $today = Carbon::today()->toDateString();  // YYYY-MM-DD
-    
-        $startTime = Carbon::createFromFormat('H:i', $request->input('start_time'))->format('Y-m-d H:i:s');
-        $endTime = Carbon::createFromFormat('H:i', $request->input('end_time'))->format('Y-m-d H:i:s');
-    
-        Classes::create([
-            'name_class' => $request->name_class,
-            'description' => $request->description,
-            'trainer_id' => $request->trainer_id,
-            'start_time' => $startTime,
-            'end_time' => $endTime,
-            'capacity' => $request->capacity,
-        ]);
-    
-        return redirect()->route('admin.classes.index')->with('success', 'Class successfully added.');
+   public function store(Request $request)
+{
+    $request->validate([
+        'name_class' => 'required|string|max:255',
+        'description' => 'required|string',
+        'trainer_id' => 'required|exists:users,id',
+        'start_time' => 'required|date_format:H:i',
+        'end_time' => 'required|date_format:H:i',
+        'capacity' => 'required|integer',
+    ]);
+
+    $startTime = Carbon::today()->toDateString() . ' ' . $request->input('start_time');
+    $endTime = Carbon::today()->toDateString() . ' ' . $request->input('end_time');
+
+    $overlap = Classes::where('start_time', '<', $endTime)
+                      ->where('end_time', '>', $startTime)
+                      ->exists();
+
+    if ($overlap) {
+        return redirect()->back()->withErrors(['start_time' => 'Class schedule overlaps with another class.'])->withInput();
     }
+
+    Classes::create([
+        'name_class' => $request->name_class,
+        'description' => $request->description,
+        'trainer_id' => $request->trainer_id,
+        'start_time' => $startTime,
+        'end_time' => $endTime,
+        'capacity' => $request->capacity,
+    ]);
+
+    return redirect()->route('admin.classes.index')->with('success', 'Class successfully added.');
+}
+
     
     public function edit($id)
     {
@@ -63,44 +70,42 @@ class ClassesController extends Controller
         return view('admin.admin_classes.edit', compact('class', 'trainers'));
     }
     public function update(Request $request, $id)
-    {
-        $class = Classes::findOrFail($id);
-    
-        $request->validate([
-            'name_class' => 'sometimes|string|max:255',
-            'description' => 'sometimes|string',
-            'trainer_id' => 'sometimes|exists:users,id',
-            'start_time' => 'sometimes|date_format:H:i',  
-            'end_time' => 'sometimes|date_format:H:i',    
-            'capacity' => 'sometimes|integer',
-        ]);
-    
-        $today = Carbon::today()->toDateString(); 
-    
-        if ($request->has('start_time')) {
-            $startTime = Carbon::createFromFormat('H:i', $request->input('start_time'))->format('Y-m-d H:i:s');
-        } else {
-            $startTime = $class->start_time; 
-        }
-    
-        if ($request->has('end_time')) {
-            $endTime = Carbon::createFromFormat('H:i', $request->input('end_time'))->format('Y-m-d H:i:s');
-        } else {
-            $endTime = $class->end_time; 
-        }
-    
-        $class->update([
-            'name_class' => $request->name_class,
-            'description' => $request->description,
-            'trainer_id' => $request->trainer_id,
-            'start_time' => $startTime,
-            'end_time' => $endTime,
-            'capacity' => $request->capacity,
-        ]);
-    
-        // Redirect back with success message
-        return redirect()->route('admin.classes.index')->with('success', 'Class successfully updated.');
+{
+    $class = Classes::findOrFail($id);
+
+    $request->validate([
+        'name_class' => 'sometimes|string|max:255',
+        'description' => 'sometimes|string',
+        'trainer_id' => 'sometimes|exists:users,id',
+        'start_time' => 'sometimes|date_format:H:i',
+        'end_time' => 'sometimes|date_format:H:i',
+        'capacity' => 'sometimes|integer',
+    ]);
+
+    $startTime = $request->has('start_time') ? Carbon::today()->toDateString() . ' ' . $request->input('start_time') : $class->start_time;
+    $endTime = $request->has('end_time') ? Carbon::today()->toDateString() . ' ' . $request->input('end_time') : $class->end_time;
+
+    $overlap = Classes::where('id', '!=', $id)
+                      ->where('start_time', '<', $endTime)
+                      ->where('end_time', '>', $startTime)
+                      ->exists();
+
+    if ($overlap) {
+        return redirect()->back()->withErrors(['start_time' => 'Class schedule overlaps with another class.'])->withInput();
     }
+
+    $class->update([
+        'name_class' => $request->name_class,
+        'description' => $request->description,
+        'trainer_id' => $request->trainer_id,
+        'start_time' => $startTime,
+        'end_time' => $endTime,
+        'capacity' => $request->capacity,
+    ]);
+
+    return redirect()->route('admin.classes.index')->with('success', 'Class successfully updated.');
+}
+
     
     public function destroy($id)
     {

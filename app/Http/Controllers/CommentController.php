@@ -57,7 +57,7 @@ class CommentController extends Controller
             'content' => $request->input('content'),
         ]);
 
-        return redirect()->route('admin.comments.index')->with('success', 'Comment successfully updated.');
+        return redirect()->route('comments.index')->with('success', 'Comment successfully updated.');
     }
 
 
@@ -67,6 +67,6 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($id);
         $comment->delete();
 
-        return redirect()->route('admin.comments.index')->with('success', 'Comment deleted successfully.');
+        return redirect()->route('comments.index')->with('success', 'Comment deleted successfully.');
     }
 }
