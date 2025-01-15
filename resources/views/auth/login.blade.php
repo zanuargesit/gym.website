@@ -12,6 +12,11 @@
 <body>
     <div class="login-container">
         <div class="login-left">
+        <div class="slider">
+        <img src="/img/gymbg.jpg" alt="Slide 1">
+        <img src="/img/gymbg1.jpg" alt="Slide 2">
+        <img src="/img/gymbglog.jpg" alt="Slide 3">
+    </div>
             <h2>Welcome to GymKita</h2>
             <p>Get exclusive access to our platform. We are dedicated to making your experience seamless and enjoyable.</p>
         </div>
@@ -52,5 +57,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/log.js') }}"></script>
 </body>
 </html>

@@ -64,3 +64,8 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+Catatan revisi tambahan:
+1. Admin seharusnya tidak bisa mengatur join class user
+2. Trainer tidak bisa mendapatkan jadwal kelas yang sama
+3. Membuat callback untuk mengambil status pada midtrans untuk mengubah status membership di database
