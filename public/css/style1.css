@@ -55,12 +55,19 @@ body::before {
 }
 
 .right-column {
+    font: poppins, sans-serif;
     flex: 1;
-    background: #fff;
     padding: 40px;
-    display: flex;
+    color: white;
     flex-direction: column;
     justify-content: center;
+    background: rgba(255, 255, 255, 0.080); /* Semi-transparent white */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    display: flex;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+    backdrop-filter: blur(15px); /* Frosted glass effect */
 }
 
 .form-label {

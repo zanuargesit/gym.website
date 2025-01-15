@@ -18,19 +18,43 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Warna hitam semi-transparan */
-    z-index: -1; /* Pastikan tetap di belakang konten */
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
 }
 
 .login-container {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.080);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     overflow: hidden;
     width: 900px;
     max-width: 100%;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slider img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slider img.active {
+    opacity: 1;
+}
+
 .login-left {
     background: url('/img/gymbg.jpg') no-repeat;
     background-size: cover;
@@ -61,6 +85,7 @@ body::before {
 .login-right {
     padding: 50px;
     width: 50%;
+    color: white;
 }
 .login-right h3 {
     font-weight: 700;
