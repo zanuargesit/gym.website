@@ -1,5 +1,6 @@
 .container{
     margin: 0;
+    color: white;
 }
 .container .row .left{
     background-color: rgba(0, 0, 0, 0.226);
