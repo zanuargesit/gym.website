@@ -8,7 +8,17 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     
+ // Misalnya di method listAll atau indexUser
+public function listAll()
+{
+    // Mengambil semua produk dari database
+    $products = Product::all();  // Atau sesuai query yang Anda perlukan
 
+    // Mengirimkan data ke tampilan
+    return view('menu.products', compact('products'));
+}
+
+    
 
     public function index(Request $request)
     {
@@ -86,14 +96,12 @@ class ProductController extends Controller
         return redirect()->route('admin.store.index')->with('success', 'Product successfully deleted.');
     }
 
-    public function indexUser(Request $request)
+    public function indexUser()
     {
-        $search = $request->input('search');
-        $classes = Product::with('trainer')
-            ->when($search, function ($query, $search) {
-                return $query->where('name_product', 'like', '%' . $search . '%');
-            })
-            ->paginate(5);
-        return view('menu.products', compact('classes'));
+        // Mengambil semua produk tanpa fitur pencarian
+        $products = Product::paginate(5); // Paginate dengan 5 produk per halaman
+    
+        return view('menu.products', compact('products')); // Kirim data produk ke tampilan
     }
+    
 }

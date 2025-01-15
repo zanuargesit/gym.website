@@ -15,6 +15,7 @@ use App\Http\Controllers\UserClassesController;
 use App\Http\Controllers\TrainerProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CartController;
 
 
 // Route Dashboard
@@ -70,6 +71,15 @@ Route::group(
 
         // Menghapus kelas yang diikuti
         Route::delete('/joinclasses/{id}', [AdminJoinClassController::class, 'destroy'])->name('admin.joinclasses.destroy');
+        Route::get('/menu/products', [ProductController::class, 'listAll'])->name('menu.products');
+
+        Route::get('cart/download/{fileName}', [CartController::class, 'downloadReport'])->name('cart.downloadReport');
+
+        Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+        Route::post('/cart/{id}/add', [CartController::class, 'addToCart'])->name('cart.add');
+        Route::patch('/cart/{id}/update', [CartController::class, 'updateCart'])->name('cart.update');
+        Route::delete('/cart/{id}/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+        Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     }
 );
 
