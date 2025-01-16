@@ -31,7 +31,7 @@
 <div class="service">
     <div class="row">
         <div class="col-3">
-            <div class="card" style="width: 26rem; height: 20rem; text-align: center">
+            <div class="card" style="width: 25rem; height: 30rem; text-align: center">
                 <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="col-3">
-            <div class="card" style="width: 26rem; height: 20rem; text-align: center">
+            <div class="card" style="width: 25rem; height: 30rem; text-align: center">
                 <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="col-3">
-            <div class="card" style="width: 26rem; height: 20rem; text-align: center">
+            <div class="card" style="width: 25rem; height: 30rem; text-align: center">
                 <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="col-3">
-            <div class="card" style="width: 26rem; height: 20rem; text-align: center">
+            <div class="card" style="width: 25rem; height: 30rem; text-align: center">
                 <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -79,9 +79,9 @@
     <div class="row ">
         <div class="col-3">
             <div class="card" style="width: 24rem; height: 36rem; text-align: center">
-                <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('img/gymtrainer.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">Chris Bumstead</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
@@ -89,9 +89,9 @@
         </div>
         <div class="col-3">
             <div class="card" style="width: 24rem; height: 36rem; text-align: center">
-                <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('img/gymtrainer (1).jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">Ramon Dino</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
@@ -99,9 +99,9 @@
         </div>
         <div class="col-3">
             <div class="card" style="width: 24rem; height: 36rem; text-align: center">
-                <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('img/gymtrainer (2).jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">Sam Sulek</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
@@ -109,9 +109,9 @@
         </div>
         <div class="col-3">
             <div class="card" style="width: 24rem; height: 36rem; text-align: center">
-                <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('img/gymtrainer (3).jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">David Laid</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
@@ -125,8 +125,8 @@
 <div class="classes">
     <div class="row">
         <div class="col-4">
-            <div class="card" style="width: 24rem; height: 20rem; text-align: center">
-                <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
+            <div class="card" style="width: 24rem; height: 36rem; text-align: center">
+                <img src="{{ asset('img/class (1).jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -135,8 +135,8 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="card" style="width: 24rem; height: 20rem; text-align: center">
-                <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
+            <div class="card" style="width: 24rem; height: 36rem; text-align: center">
+                <img src="{{ asset('img/class (2).jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -145,8 +145,8 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="card" style="width: 24rem; height: 20rem; text-align: center">
-                <img src="{{ asset('img/1.jpg') }}" class="card-img-top" alt="...">
+            <div class="card" style="width: 24rem; height: 36rem; text-align: center">
+                <img src="{{ asset('img/class (3).jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
