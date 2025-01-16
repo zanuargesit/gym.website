@@ -138,7 +138,7 @@ button {
 }
 
 .card img {
-    height: 62%;
+    height: 55%;
     object-fit: cover; /* Memastikan gambar memenuhi area tanpa mengubah proporsi */
     
 }

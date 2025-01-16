@@ -92,52 +92,87 @@
 
                     </div>
 
-                </div>
-                <div class="container">
-                    <h3>Kelas yang Diikuti</h3>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nama Kelas</th>
-                                <th>Nama Trainer</th>
-                                <th>Jam Mulai</th>
-                                <th>Jam Berakhir</th>
-                                <th>Deskripsi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($user->joinClasses as $joinClass)
-                            @if ($joinClass->class)
-                            <tr>
-                                <td>{{ $joinClass->class->name_class }}</td>
-                                <td>{{ $joinClass->class->trainer->name }}</td>
-                                <td>{{ $joinClass->class->start_time }}</td>
-                                <td>{{ $joinClass->class->end_time }}</td>
-                                <td>{{ $joinClass->class->description }}</td>
-                                <td>
-                                            <form action="{{ route('admin.joinclasses.destroy', $joinClass->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <div class="form-group">
-                                                    <label for="reason">Alasan Keluar:</label><br>
-                                                    <input type="radio" name="reason" value="no_join" required> Tidak Jadi Bergabung
-                                                    <input type="radio" name="reason" value="schedule_conflict" required> Konflik Jadwal
-                                                    <input type="radio" name="reason" value="other" required> Lainnya
-                                                </div>
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to leave this class?');">Hapus dari Kelas</button>
-                                            </form>
-                                        </td>
-                            </tr>
-                            @else
-                            <tr>
-                                <td colspan="4">Data kelas tidak ditemukan.</td>
-                            </tr>
-                            @endif
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+                    <div class="container my-5">
+    <h3 class="mb-4">Kelas yang Diikuti</h3>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nama Kelas</th>
+                    <th>Nama Trainer</th>
+                    <th>Jam Mulai</th>
+                    <th>Jam Berakhir</th>
+                    <th>Deskripsi</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($user->joinClasses as $joinClass)
+                    @if ($joinClass->class)
+                        <tr>
+                            <td class="text-start">
+                                <span class="fw-bold">{{ $joinClass->class->name_class }}</span>
+                                <br>
+                                <small class="badge bg-info">Aktif</small>
+                            </td>
+                            <td>
+                                <span>{{ $joinClass->class->trainer->name }}</span>
+                                <br>
+                                <small class="text-muted">Trainer</small>
+                            </td>
+                            <td>
+                                <span class="text-success">{{ \Carbon\Carbon::parse($joinClass->class->start_time)->format('H:i') }}</span>
+                            </td>
+                            <td>
+                                <span class="text-danger">{{ \Carbon\Carbon::parse($joinClass->class->end_time)->format('H:i') }}</span>
+                            </td>
+                            <td class="text-start">
+                                <button class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $joinClass->class->description }}">
+                                    <i class="bi bi-info-circle"></i> Lihat
+                                </button>
+                            </td>
+                            <td>
+                                <form action="{{ route('admin.joinclasses.destroy', $joinClass->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div class="form-group mb-2">
+                                        <label for="reason" class="form-label fw-light">Alasan Keluar:</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="reason" value="no_join" required>
+                                            <label class="form-check-label">Tidak Jadi</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="reason" value="schedule_conflict" required>
+                                            <label class="form-check-label">Konflik Jadwal</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="reason" value="other" required>
+                                            <label class="form-check-label">Lainnya</label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin keluar dari kelas ini?');">
+                                        <i class="bi bi-x-circle"></i> Keluar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td colspan="6" class="text-muted">Data kelas tidak ditemukan.</td>
+                        </tr>
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Aktifkan Bootstrap Tooltip
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
     </div>
     @endsection
