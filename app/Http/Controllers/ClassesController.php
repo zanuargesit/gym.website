@@ -28,40 +28,48 @@ class ClassesController extends Controller
     }
 
 
-   public function store(Request $request)
-{
-    $request->validate([
-        'name_class' => 'required|string|max:255',
-        'description' => 'required|string',
-        'trainer_id' => 'required|exists:users,id',
-        'start_time' => 'required|date_format:H:i',
-        'end_time' => 'required|date_format:H:i',
-        'capacity' => 'required|integer',
-    ]);
-
-    $startTime = Carbon::today()->toDateString() . ' ' . $request->input('start_time');
-    $endTime = Carbon::today()->toDateString() . ' ' . $request->input('end_time');
-
-    $overlap = Classes::where('start_time', '<', $endTime)
-                      ->where('end_time', '>', $startTime)
-                      ->exists();
-
-    if ($overlap) {
-        return redirect()->back()->withErrors(['start_time' => 'Class schedule overlaps with another class.'])->withInput();
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name_class' => 'required|string|max:255',
+            'description' => 'required|string',
+            'trainer_id' => 'required|exists:users,id',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after:start_time',
+            'capacity' => 'required|integer',
+        ]);
+    
+        $startDateTime = Carbon::createFromFormat('Y-m-d H:i', $request->start_date . ' ' . $request->start_time)->toDateTimeString();
+        $endDateTime = Carbon::createFromFormat('Y-m-d H:i', $request->end_date . ' ' . $request->end_time)->toDateTimeString();
+    
+  
+        $overlap = Classes::where('trainer_id', $request->trainer_id)
+            ->whereDate('start_date', '<=', $request->end_date)
+            ->whereDate('end_date', '>=', $request->start_date)
+            ->whereTime('start_time', '<', $endDateTime)
+            ->whereTime('end_time', '>', $startDateTime)
+            ->exists();
+    
+        if ($overlap) {
+            return redirect()->back()->withErrors(['start_time' => 'Class schedule overlaps with another class on the same date.'])->withInput();
+        }
+    
+        Classes::create([
+            'name_class' => $request->name_class,
+            'description' => $request->description,
+            'trainer_id' => $request->trainer_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'start_time' => $startDateTime,
+            'end_time' => $endDateTime,
+            'capacity' => $request->capacity,
+        ]);
+    
+        return redirect()->route('admin.classes.index')->with('success', 'Class successfully added.');
     }
-
-    Classes::create([
-        'name_class' => $request->name_class,
-        'description' => $request->description,
-        'trainer_id' => $request->trainer_id,
-        'start_time' => $startTime,
-        'end_time' => $endTime,
-        'capacity' => $request->capacity,
-    ]);
-
-    return redirect()->route('admin.classes.index')->with('success', 'Class successfully added.');
-}
-
+    
     
     public function edit($id)
     {
@@ -84,6 +92,9 @@ class ClassesController extends Controller
 
     $startTime = $request->has('start_time') ? Carbon::today()->toDateString() . ' ' . $request->input('start_time') : $class->start_time;
     $endTime = $request->has('end_time') ? Carbon::today()->toDateString() . ' ' . $request->input('end_time') : $class->end_time;
+    
+    $startTime = Carbon::parse($startTime)->toDateTimeString();
+    $endTime = Carbon::parse($endTime)->toDateTimeString();
 
     $overlap = Classes::where('id', '!=', $id)
                       ->where('start_time', '<', $endTime)

@@ -118,17 +118,13 @@
                                             <form action="{{ route('admin.joinclasses.destroy', $joinClass->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                
-                                                <!-- Alasan Keluar (Radio Buttons) -->
                                                 <div class="form-group">
                                                     <label for="reason">Alasan Keluar:</label><br>
                                                     <input type="radio" name="reason" value="no_join" required> Tidak Jadi Bergabung
                                                     <input type="radio" name="reason" value="schedule_conflict" required> Konflik Jadwal
                                                     <input type="radio" name="reason" value="other" required> Lainnya
                                                 </div>
-                                                
-                                                <!-- Tombol Hapus -->
-                                                <button type="submit" class="btn btn-danger">Hapus dari Kelas</button>
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to leave this class?');">Hapus dari Kelas</button>
                                             </form>
                                         </td>
                             </tr>
@@ -140,8 +136,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </div>

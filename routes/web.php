@@ -69,17 +69,17 @@ Route::group(
         Route::delete('/profile/{id}/photo', [ProfileController::class, 'deletePhoto'])->name('profile.deletePhoto');
         Route::get('/user/classes', [ClassesController::class, 'indexUser'])->name('user.profile.index');
 
-        // Menghapus kelas yang diikuti
         Route::delete('/joinclasses/{id}', [AdminJoinClassController::class, 'destroy'])->name('admin.joinclasses.destroy');
         Route::get('/menu/products', [ProductController::class, 'listAll'])->name('menu.products');
 
-        Route::get('cart/download/{fileName}', [CartController::class, 'downloadReport'])->name('cart.downloadReport');
+        Route::get('/cart/download-report/{fileName}', [CartController::class, 'downloadReport'])->name('cart.downloadReport');
 
-        Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-        Route::post('/cart/{id}/add', [CartController::class, 'addToCart'])->name('cart.add');
-        Route::patch('/cart/{id}/update', [CartController::class, 'updateCart'])->name('cart.update');
-        Route::delete('/cart/{id}/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
-        Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/{id}/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::patch('/cart/{id}/update', [CartController::class, 'updateCart'])->name('cart.update');
+Route::delete('/cart/{id}/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout'); 
     }
 );
 

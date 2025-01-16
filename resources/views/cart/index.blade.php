@@ -1,54 +1,84 @@
 @extends('layout.master')
 
+@section('style')
+<link rel="stylesheet" href="{{ asset('css/style3.css') }}">
+@endsection
+
 @section('content')
 <body>
-    <div class="container my-5">
-        <h2>Your Shopping Cart</h2>
+
+
+    <div class="container mt-5">
+        <h2>Your Cart</h2>
 
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
-                @if(session('file'))
-                    <!-- Link untuk mendownload laporan pembelian -->
-                    <a href="{{ route('cart.downloadReport', session('file')) }}" class="btn btn-info mt-2">Download Your Purchase Report</a>
-                @endif
             </div>
         @endif
 
-        @if(!empty($cartItems) && count($cartItems) > 0)
-            <div class="row">
-                @foreach($cartItems as $id => $item)
-                    <div class="col-md-3 mb-4">
-                        <div class="card h-100 text-center">
-                            <img src="{{ asset('img/' . $item['product']->image) }}" class="card-img-top" alt="{{ $item['product']->name_product }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $item['product']->name_product }}</h5>
-                                <p class="card-text">{{ $item['product']->deskripsi }}</p>
-                                <p class="card-text">Rp {{ number_format($item['product']->harga, 0, ',', '.') }}</p>
-                                <form action="{{ route('cart.remove', $id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">Remove from Cart</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $total = 0;
+                @endphp
+
+                @foreach ($cartItems as $item)
+                    <tr>
+                        <td>{{ $item['product']->name_product }}</td>
+                        <td>{{ $item['quantity'] }}</td>
+                        <td>Rp {{ number_format($item['product']->harga * $item['quantity'], 0, ',', '.') }}</td>
+                        <td>
+                            <form action="{{ route('cart.remove', $item['product']->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @php
+                        $total += $item['product']->harga * $item['quantity'];
+                    @endphp
                 @endforeach
-            </div>
+            </tbody>
+        </table>
 
-            <!-- Button Checkout -->
-            <form action="{{ route('cart.checkout') }}" method="POST">
-                @csrf
-                <div class="mt-3">
-                    <label for="address">Shipping Address</label>
-                    <input type="text" id="address" name="address" class="form-control" required placeholder="Enter your address">
-                </div>
-                <div class="mt-3">
-                    <button type="submit" class="btn btn-success">Checkout</button>
-                </div>
-            </form>
-        @else
-            <p>Your cart is empty!</p>
-        @endif
+        <h3>Total: Rp {{ number_format($total, 0, ',', '.') }}</h3>
+
+        <form action="{{ route('cart.checkout') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="password" class="form-label">Account Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Checkout</button>
+        </form>
+
+        @if(session('file'))
+    <a href="{{ route('cart.downloadReport', session('file')) }}" class="btn btn-success mt-3">Download Purchase Report</a>
+@endif
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function printPage() {
+            window.print();
+        }
+    </script>
 </body>
+</html>
 @endsection
