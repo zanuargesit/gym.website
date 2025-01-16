@@ -5,38 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-/*************  ✨ Codeium Command 🌟  *************/
+
     public function index()
     {
         return view('user.dashboard');
     }
-/******  514f1ffe-3b25-4047-9ad6-23196320d66d  *******/
 
- 
+
     public function create() {}
 
-   
-    public function store(Request $request)
-    {
-        
-    }
 
-   
-    public function show(string $id)
-    {
-        
-    }
+    public function store(Request $request) {}
+
+
+    public function show(string $id) {}
 
     public function edit(string $id)
     {
         $user = User::with('joinClasses.class')->findOrFail($id);
         return view('user.profile', compact('user'));
     }
-    
+
 
     public function update(Request $request, string $id)
     {
@@ -63,7 +57,7 @@ class ProfileController extends Controller
         return redirect()->route('profile.edit', $user->id)->with('success', 'Profilmu berhasil diperbarui.');
     }
 
-  
+
     public function destroy(string $id)
     {
         //
@@ -80,5 +74,25 @@ class ProfileController extends Controller
         }
 
         return redirect()->back()->with('success', 'Foto profil berhasil dihapus.');
+    }
+
+    public function upgrade()
+    {
+        $user = Auth::user();
+        $membership = $user->membership;  // Mengambil data membership pengguna yang sedang login
+
+        // Tentukan status tombol atau badge berdasarkan status membership
+        $membershipStatus = 'upgrade';  // Default: tampilkan tombol upgrade
+
+        if ($membership) {
+            if ($membership->status == 'silver') {
+                $membershipStatus = 'silver';
+            } elseif ($membership->status == 'gold') {
+                $membershipStatus = 'gold';
+            }
+        }
+
+        // Kirim status membership dan status tombol ke view
+        return view('dashboard', compact('membership', 'membershipStatus'));
     }
 }

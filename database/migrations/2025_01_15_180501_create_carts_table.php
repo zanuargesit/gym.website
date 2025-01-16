@@ -10,8 +10,8 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relasi ke pengguna
-            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Relasi ke produk
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Relasi ke pengguna
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade'); // Relasi ke produk
             $table->integer('quantity')->default(1); // Jumlah produk yang ditambahkan ke keranjang
             $table->timestamps();
         });

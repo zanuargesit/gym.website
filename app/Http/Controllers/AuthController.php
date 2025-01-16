@@ -45,7 +45,7 @@ class AuthController extends Controller
             } elseif ($user->role == 'trainer') {
                 return redirect()->route('trainer.profile')->with('successLogin', 'Login Berhasil');
             }
-            
+
 
             return redirect('auth.login')->with('error', 'Anda belum punya akun');
         } else {
@@ -63,8 +63,8 @@ class AuthController extends Controller
             "confirmed_password" => "required|same:password",
             "no_telepon" => "required",
         ]);
-        
-    
+
+
         $user = User::create([
             'username' => $request->username,
             'name' => $request->name,
@@ -72,17 +72,16 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'no_telepon' => $request->no_telepon,
             'role' => 'user',
-            'status' => 'inactive',
         ]);
-        
-    
+
+
         if ($user) {
             return redirect()->route('login')->with('successRegister', 'Registrasi berhasil, akun Anda menunggu aktivasi.');
         }
-    
+
         return back()->with('errorRegister', 'Registrasi gagal, coba lagi.');
     }
-    
+
     public function logout()
     {
         Auth::logout();

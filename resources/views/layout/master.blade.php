@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     @include('layout._navbar')
     @yield('content')
     <link rel="stylesheet" href="{{ asset ("css/navbar.css")}}?v=1">

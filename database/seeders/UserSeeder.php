@@ -21,7 +21,6 @@ class UserSeeder extends Seeder
                 'password' => '12345678',
                 'no_telepon' => '0813123123',
                 'role' => 'user',
-                'status' => 'active'
             ]
         );
 
@@ -32,7 +31,6 @@ class UserSeeder extends Seeder
             'password' => '12345678',
             'no_telepon' => '0813123123',
             'role' => 'admin',
-            'status' => 'inactive'
         ]);
 
         User::create([
@@ -42,7 +40,14 @@ class UserSeeder extends Seeder
             'password' => '12345678',
             'no_telepon' => '0813123123',
             'role' => 'trainer',
-            'status' => 'inactive'
+        ]);
+        User::create([
+            'username' => 'budi',
+            'name' => 'Budi',
+            'email' => 'budi@gmail.com',
+            'password' => '12345678',
+            'no_telepon' => '0813123123',
+            'role' => 'user',
         ]);
     }
 }

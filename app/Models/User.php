@@ -12,13 +12,12 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'username',  
+        'username',
         'name',
         'email',
         'password',
         'no_telepon',
         'role',
-        'status',
         'foto',
     ];
 
@@ -28,14 +27,9 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'email_verified_at' => 'datetime', 
-        'password' => 'hashed',  
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
-
-    public function isActive()
-    {
-        return $this->status === 'active';
-    }
 
     public function joinClasses(): HasMany
     {
@@ -50,5 +44,11 @@ class User extends Authenticatable
     public function trainerClasses(): HasMany
     {
         return $this->hasMany(Classes::class, 'trainer_id');
+    }
+
+    // Di model User
+    public function membership()
+    {
+        return $this->hasOne(Membership::class);
     }
 }
